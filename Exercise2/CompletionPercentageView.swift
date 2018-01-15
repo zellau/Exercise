@@ -1,38 +1,21 @@
 import UIKit
 
 class CompletionPercentageView: UIView {
-//    lazy var bezierPath: UIBezierPath = {
-//        let midPoint = CGPoint(x: self.bounds.midX, y: self.bounds.midY)
-//        let path = UIBezierPath(arcCenter: midPoint, radius: self.bounds.width/2, startAngle: 0, endAngle: 350, clockwise: true)
-//        return path
-//    }()
-//    lazy var circle: UIView = {
-//        let shapeLayer = CAShapeLayer()
-//        shapeLayer.path = self.bezierPath
-//        shapeLayer.fillColor = .green
-//        shapeLayer.lineWidth = self.bounds.width/10
-//        self.bezierPath.fill()
-//        let view = UIView()
-//        view.draw(shapeLayer, in: <#T##CGContext#>)
-//        return shapeLayer
-//    }()
 
+    func angle(_ n:CGFloat) -> CGFloat { return 2 * CGFloat.pi * (n - 0.25)}
     override func draw(_ rect: CGRect) {
         super.draw(rect)
 
-//        let context: CGContext? = UIGraphicsGetCurrentContext()
-//
-//        let midPoint = CGPoint(x: self.bounds.midX, y: self.bounds.midY)
+        let context: CGContext! = UIGraphicsGetCurrentContext()
+
+        let midPoint = CGPoint(x: self.bounds.midX, y: self.bounds.midY)
 //        let path = UIBezierPath(arcCenter: midPoint, radius: self.bounds.width/2, startAngle: 0, endAngle: 350, clockwise: true)
 //        path.lineCapStyle = .round
-//        context?.setStrokeColor(UIColor.green.cgColor)
-//        context?.setLineWidth(20)
-//        context?.addArc(center: midPoint, radius: self.bounds.width/2, startAngle: 0, endAngle: 350, clockwise: true)
-//
-//        let shapeLayer = CAShapeLayer()
-//        shapeLayer.path = path
-//        shapeLayer.fillColor = .green
-//        shapeLayer.lineWidth = self.bounds.width/10
-//        path.fill()
+        let radius = self.bounds.width / 2
+        context.setStrokeColor(UIColor.green.cgColor)
+        context.setLineCap(.round)
+        context.setLineWidth(radius * 0.1)
+        context.addArc(center: midPoint, radius: radius * 0.9, startAngle: angle(0), endAngle: angle(-0.1) , clockwise: false)
+        context.drawPath(using: .stroke)
     }
 }
