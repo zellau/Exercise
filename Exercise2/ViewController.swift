@@ -15,7 +15,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        aLabel.text = viewModel.minutesCompletedText
+        viewModel.completedMinutes = 5
+        viewModel.goalMinutes = 10
+        aLabel.text = viewModel.completedTime
         // Do any additional setup after loading the view, typically from a nib.
     }
 
